@@ -16,7 +16,7 @@ from functools import partial
 
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.models import User
-from django.conf import settings
+from django.conf import settings; logging = settings.LOG
 from django.contrib import messages
 from django.core.management import call_command
 from django.core.urlresolvers import reverse
@@ -34,8 +34,7 @@ from kalite.facility.models import Facility, FacilityUser,FacilityGroup
 from kalite.i18n import select_best_available_language
 from kalite.main import topic_tools
 from kalite.main.models import VideoLog, ExerciseLog
-from kalite.main.topic_tools import get_ancestor, get_parent, get_neighbor_nodes
-from kalite.settings import LOG as logging
+from kalite.main.topic_tools import get_ancestor, get_parent, get_neighbor_nodes, get_topic_tree
 from kalite.shared.decorators import require_admin
 from kalite.updates import stamp_availability_on_topic, stamp_availability_on_video, do_video_counts_need_update_question_mark
 from securesync.api_client import BaseClient
@@ -316,6 +315,12 @@ def exercise_dashboard(request):
     }
     return context
 
+
+def watch_home(request):
+    """Dummy wrapper function for topic_handler with url=/"""
+    return topic_handler(request, cached_nodes={"topic": get_topic_tree()})
+
+
 @check_setup_status  # this must appear BEFORE caching logic, so that it isn't blocked by a cache hit
 @backend_cache_page
 @render_to("distributed/homepage.html")
@@ -367,7 +372,7 @@ def zone_redirect(request):
     if zone:
         return HttpResponseRedirect(reverse("zone_management", kwargs={"zone_id": zone.pk}))
     else:
-        return HttpResponseRedirect(reverse("zone_management", kwargs={"zone_id": None}))
+        return HttpResponseRedirect(reverse("zone_management", kwargs={"zone_id": "None"}))
 
 @require_admin
 def device_redirect(request):
