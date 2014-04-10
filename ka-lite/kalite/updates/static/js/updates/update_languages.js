@@ -124,6 +124,7 @@ $(function () {
             });
         }
 
+
         jQuery("button.ui-dialog-titlebar-close").hide();
 
     });
