@@ -90,7 +90,7 @@
         <div class="title-div">
             <span class="title" style="float: left">{% trans "Facilities" %}</span>
             <a href="{% url add_facility zone_id=zone_id %}">
-                <span class="icon-add icon-medium" title="{% trans 'Add a new facility' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="icon-plus-sign icon-medium" title="{% trans 'Add a new facility' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </a>
         </div>
         <div class="clear"></div>
@@ -122,30 +122,30 @@
                             {{ facility.name }}
                         </a>
                         <a href="{% url facility_edit id=facility.id %}">
-                            <span class="icon-pencil icon-medium" title="{% trans 'Edit facility' %}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="icon-pencil icon-medium" title="{% trans 'Edit facility' %}"></span>
                         </a>
                         {% if facility.is_deletable %}
                         <a href="{% url facility_delete facility_id=facility.id %}">
-                            <span class="icon-trash icon-medium" title="{% trans 'Delete facility' %}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="icon-trash icon-medium" title="{% trans 'Delete facility' %}"></span>
                         </a>
                         {% endif %}
                     </td>
                     <td nowrap>
                         {{ facility.num_users }}
                         <!--a href="{% url facility_management zone_id=zone_id facility_id=facility.id %}">
-                            <span class="icon-add icon-medium" title="{% trans 'Add users' %}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="icon-plus-sign icon-medium" title="{% trans 'Add users' %}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         </a-->
                         <a href="{% url facility_management zone_id=zone_id facility_id=facility.id %}">
-                            <span class="icon-pencil icon-medium" title="{% trans 'Edit users' %}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="icon-pencil icon-medium" title="{% trans 'Edit users' %}"></span>
                         </a>
                     </td>
                     <td nowrap>
                         {{ facility.num_groups }}
                         <!--a href="{% url facility_management zone_id=zone_id facility_id=facility.id %}">
-                            <span class="icon-add icon-medium" title="{% trans 'Add groups' %}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="icon-plus-sign icon-medium" title="{% trans 'Add groups' %}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         </a-->
                         <a href="{% url facility_management zone_id=zone_id facility_id=facility.id %}">
-                            <span class="icon-pencil icon-medium" title="{% trans 'Edit groups' %}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="icon-pencil icon-medium" title="{% trans 'Edit groups' %}"></span>
                         </a>
                     </td>
                     </td>
