@@ -183,7 +183,9 @@ def update_language_packs(lang_codes, options):
 
     for lang_code in lang_codes:
         lang_code_map = get_supported_language_map(lang_code)
-        lang_metadata = {}
+        lang_metadata = {
+            "beta": True if lang_code_map["beta"] != lang_code else False,
+        }
 
         # Step 1: Update / collect srts.  No version needed, we want to share latest always.
         if options['update_srts']:
@@ -220,7 +222,6 @@ def update_language_packs(lang_codes, options):
         lang_metadata.update(trans_metadata.get(lang_code, {}))
 
         # Now create/update unified meta data
-
         generate_metadata(package_metadata={lang_code: lang_metadata}, version=options["version"], force_version_update=options["force_update"])
 
         # Zip into language packs
